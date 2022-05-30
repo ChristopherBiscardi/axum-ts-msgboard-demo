@@ -3,13 +3,14 @@ pub mod shutdown;
 
 use axum::{
     handler::Handler,
-    http::StatusCode,
+    http::{self, HeaderValue, StatusCode},
     response::IntoResponse,
     routing::{get, post},
     Extension, Router,
 };
+use hyper::Method;
 use std::sync::{Arc, Mutex};
-use tower_http::trace::TraceLayer;
+use tower_http::{cors::CorsLayer, trace::TraceLayer};
 use tracing::instrument;
 
 pub fn make_router() -> Router {
@@ -21,7 +22,17 @@ pub fn make_router() -> Router {
         .route("/health", get(health))
         .route("/message", get(message::get))
         .route("/message", post(message::create))
-        .layer(Extension(messages));
+        .layer(Extension(messages))
+        .layer(
+            CorsLayer::new()
+                .allow_origin(
+                    "http://localhost:3000"
+                        .parse::<HeaderValue>()
+                        .unwrap(),
+                )
+                .allow_headers([http::header::CONTENT_TYPE])
+                .allow_methods([Method::GET, Method::POST]),
+        );
 
     let app = app.fallback(handler_404.into_service());
 

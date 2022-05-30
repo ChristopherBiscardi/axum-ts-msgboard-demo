@@ -8,8 +8,8 @@ async fn main() {
 
     let app = make_router();
     // needs to be [0,0,0,0] in a container,
-    // or [::]:3000 on fly.io to handle ipv6 and ipv4
-    let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
+    // or [::]:3001 on fly.io to handle ipv6 and ipv4
+    let addr = SocketAddr::from(([127, 0, 0, 1], 3001));
     tracing::debug!("listening on {}", addr);
     axum::Server::bind(&addr)
         .serve(app.into_make_service())
