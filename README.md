@@ -1,9 +1,9 @@
 ## TODO:
 
-- [ ] Axum API
-  - [ ] GET /messages
-  - [ ] POST /message
-- [ ] Axum Tests
+- [x] Axum API
+  - [x] GET /messages
+  - [x] POST /message
+- [x] Axum Tests
 - [ ] README
   - [ ] how to run the application
   - [ ] how to run the tests
