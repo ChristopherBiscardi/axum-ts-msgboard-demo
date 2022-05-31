@@ -1,12 +1,31 @@
-## TODO:
+# Getting Started
 
-- [x] Axum API
-  - [x] GET /messages
-  - [x] POST /message
-- [x] Axum Tests
-- [ ] README
-  - [ ] how to run the application
-  - [ ] how to run the tests
+The workspace is set up as a Cargo workspace with an NPM package in `ui`. The Cargo and NPM projects are entirely contained in their directories otherwise.
+
+To start the dev servers, use the following.
+
+```
+cargo run
+```
+
+```
+cd ui
+npm run dev
+```
+
+The axum server is hardcoded to port `3001` and the ui server is hardcoded to port `3000`.
+
+Visit `localhost:3000` to see the UI and start submitting messages.
+
+![ui screenshot](readme/screenshot.png)
+
+## Testing
+
+The API is the only package with tests at the moment, so running tests is done through cargo.
+
+```
+cargo test
+```
 
 ### Constraints
 
